@@ -11,35 +11,18 @@ from pytgcalls.types.input_stream import VideoParameters
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from config import API_ID, API_HASH, SESSION_NAME
-from youtube_dl import YoutubeDL
-from youtube_dl.utils import ExtractorError
-SIGINT: int = 2
 
 app = Client(SESSION_NAME, API_ID, API_HASH)
-
 call_py = PyTgCalls(app)
 FFMPEG_PROCESSES = {}
 def raw_converter(dl, song, video):
-    return subprocess.Popen(
+    subprocess.Popen(
         ['ffmpeg', '-i', dl, '-f', 's16le', '-ac', '1', '-ar', '48000', song, '-y', '-f', 'rawvideo', '-r', '20', '-pix_fmt', 'yuv420p', '-vf', 'scale=1280:720', video, '-y'],
         stdin=None,
         stdout=None,
         stderr=None,
         cwd=None,
     )
-    
-def youtube(url: str):
-    try:
-        params = {"format": "best[height=?720]/best", "noplaylist": True}
-        yt = YoutubeDL(params)
-        info = yt.extract_info(url, download=False)
-        return info['url']
-    except ExtractorError: # do whatever
-        return 
-    except Exception:
-        return
-    
-
 
 
 @Client.on_message(filters.command("stream"))
@@ -47,27 +30,13 @@ async def stream(client, m: Message):
     replied = m.reply_to_message
     if not replied:
         if len(m.command) < 2:
-            await m.reply("`Reply to some Video or Give Some Live Stream Url!`")
+            await m.reply("`Reply to some Video File!`")
         else:
             livelink = m.text.split(None, 1)[1]
             chat_id = m.chat.id
-            try:
-                livelink = await asyncio.wait_for(
-                    app.loop.run_in_executor(
-                        None,
-                        lambda : youtube(livelink)
-                    ),
-                    timeout=None # Add timeout (recommended)
-                )
-            except asyncio.TimeoutError:
-                await m.reply("TimeoutError: process is taking unexpected time")
-                return
-            if not livelink:
-                await m.reply("Can't fetch source")
-                return
             process = raw_converter(livelink, f'audio{chat_id}.raw', f'video{chat_id}.raw')
             FFMPEG_PROCESSES[chat_id] = process
-            msg = await m.reply("`Starting Live Stream...`")
+            msg = await m.reply("`Starting Video Stream...`")
             await asyncio.sleep(10)
             try:
                 audio_file = f'audio{chat_id}.raw'
@@ -93,7 +62,7 @@ async def stream(client, m: Message):
                     ),
                     stream_type=StreamType().local_stream,
                 )
-                await msg.edit("**Started Streaming!**")
+                await msg.edit("**Started Video Stream!**")
                 await idle()
             except Exception as e:
                 await msg.edit(f"**Error** -- `{e}`")
@@ -128,7 +97,7 @@ async def stream(client, m: Message):
                 ),
                 stream_type=StreamType().local_stream,
             )
-            await msg.edit("**Started Streaming!**")
+            await msg.edit("**Started Video Stream!**")
         except Exception as e:
             await msg.edit(f"**Error** -- `{e}`")
             await idle()
@@ -147,6 +116,6 @@ async def stopvideo(client, m: Message):
             except Exception as e:
                 print(e)
         await call_py.leave_group_call(chat_id)
-        await m.reply("**⏹️ Stopped Streaming!**")
+        await m.reply("**⏹️ Stop Video Stream!**")
     except Exception as e:
         await m.reply(f"**🚫 Error** - `{e}`")

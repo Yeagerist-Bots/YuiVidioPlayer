@@ -22,10 +22,15 @@ A Advanced Anime Theme VC Video Player created for playing vidio in the voice ch
 - /tts : Replay to any text you want to make audio
 - /uptime - check the bot uptime status
 - /sysinfo - show the bot system information
--  
   ## Guys please if you want to change the song then first /stop command then play second song
+  
+  
+#### Admins only.
+- `/userbotjoin` - invite assistant to your chat
+- `/userbotleave` - remove assistant from your chat
 
-
+### Commands for Sudo Users ⚔️
+- `/userbotleaveall` - remove assistant from all chats
 
 # To Do
 ### Add User Info Command

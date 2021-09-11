@@ -8,7 +8,6 @@ from config import BOT_USERNAME, SUDO_USERS
 
 
 @Client.on_message(command(["vjoin", f"vjoin@{BOT_USERNAME}"]) & ~filters.private & ~filters.bot)
-@authorized_users_only
 @errors
 async def entergroup(client, message):
     chid = message.chat.id
@@ -44,7 +43,6 @@ async def entergroup(client, message):
 
 
 @Client.on_message(command(["vleave", f"vleave@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
-@authorized_users_only
 async def leavegroup(client, message):
     try:
         await USER.leave_chat(message.chat.id)

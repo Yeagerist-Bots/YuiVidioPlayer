@@ -68,7 +68,7 @@ async def startvideo(client, m: Message):
                 return
             process = raw_converter(livelink, f'audio{chat_id}.raw', f'video{chat_id}.raw')
             FFMPEG_PROCESS[chat_id] = process
-            msg = await m.reply("🔁 **starting video streaming...**")
+            msg = await m.reply("🔁 **Starting video streaming...**")
             await asyncio.sleep(10)
             try:
                 audio_file = f'audio{chat_id}.raw'
@@ -94,16 +94,16 @@ async def startvideo(client, m: Message):
                     ),
                     stream_type=StreamType().local_stream,
                 )
-                await msg.edit("💡 **video streaming started!**\n\n» **join to video chat on the top to watch the video.**")
+                await msg.edit("💡 **Video streaming started!**\n\n» **join to video chat on the top to watch the video.**")
                 await idle()
             except Exception as e:
                 await msg.edit(f"🚫 **error** | `{e}`")
    
     elif replied.video or replied.document:
-        msg = await m.reply("📥 downloading video...")
+        msg = await m.reply("📥 Downloading video...")
         video = await client.download_media(m.reply_to_message)
         chat_id = m.chat.id
-        await msg.edit("🔁 **preparing...**")
+        await msg.edit("🔁 **Preparing...**")
         os.system(f"ffmpeg -i '{video}' -f s16le -ac 1 -ar 48000 'audio{chat_id}.raw' -y -f rawvideo -r 20 -pix_fmt yuv420p -vf scale=640:360 'video{chat_id}.raw' -y")
         try:
             audio_file = f'audio{chat_id}.raw'
@@ -129,12 +129,12 @@ async def startvideo(client, m: Message):
                 ),
                 stream_type=StreamType().local_stream,
             )
-            await msg.edit("💡 **video streaming started!**\n\n» **join to video chat on the top to watch the video.**")
+            await msg.edit("💡 **Video streaming started!**\n\n» **join to video chat on the top to watch the video.**")
         except Exception as e:
-            await msg.edit(f"🚫 **error** | `{e}`")
+            await msg.edit(f"🚫 **Error** | `{e}`")
             await idle()
     else:
-        await m.reply("💭 please reply to video or video file to stream")
+        await m.reply("💭 Please reply to video or video file to stream")
 
 
 @Client.on_message(command(["stop", f"stop@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
@@ -149,6 +149,6 @@ async def stopvideo(client, m: Message):
             except Exception as e:
                 print(e)
         await call_py.leave_group_call(chat_id)
-        await m.reply("✅ **disconnected from vc !**")
+        await m.reply("✅ **Disconnected from vc !**")
     except Exception as e:
-        await m.reply(f"🚫 **error** | `{e}`")
+        await m.reply(f"🚫 **Error** | `{e}`")

@@ -17,3 +17,10 @@ dnspython
 googletrans==4.0.0rc1
 gTTS
 youtube-dl
+future
+aiofiles
+psutil
+requests
+youtube_dl
+pafy==0.5.5
+pytube==11.0.1

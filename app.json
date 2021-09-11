@@ -38,12 +38,23 @@
                "description":"Your Mongo DB Database Name ",
                 "value": "my",
                 "required": false
+          },
+        "BOT_USERNAME": {
+            "description": "your bot username from @botfather",
+            "required": true
+         },
+        "SUDO_USERS": {
+            "description": "list of user ids to be added to sudo member list",
+            "required": true
         }
-       },
+    },
     "addons": [],
     "buildpacks": [
         {
             "url": "heroku/python"
+        },
+        {
+            "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
         }
     ],
     "formation": {

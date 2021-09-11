@@ -23,6 +23,21 @@ Commands
 - /ly   : To Get lyrics Of Song
 - /song : To Get Link From Youtube
 - /quote: To Get Anime quote
+- /tts : Replay to any text you want to make audio
+- /uptime - check the bot uptime status
+- /sysinfo - show the bot system information
+
+**=>> More tools 🧑‍🔧**
+- /userbotjoin: Invite @YuiVideoPlayer Userbot to your chat
+
+**=>> Commands for Sudo Users ⚔️**
+ - /userbotleaveall - remove assistant from all chats
+ - /broadcast <reply to message> - globally brodcast replied message to all chats
+*Sudo Users can execute any command in any groups
+
+
+
+
  </b>""",
         reply_markup=InlineKeyboardMarkup(
             [

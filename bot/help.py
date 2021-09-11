@@ -35,9 +35,6 @@ Commands
  - /broadcast <reply to message> - globally brodcast replied message to all chats
 *Sudo Users can execute any command in any groups
 
-
-
-
  </b>""",
         reply_markup=InlineKeyboardMarkup(
             [

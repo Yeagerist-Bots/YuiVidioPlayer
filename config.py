@@ -7,5 +7,5 @@ SESSION_NAME = os.getenv("SESSION_NAME","BQA5Wsg0rNkRqt9cgP1Xl-vCJLdkgOZjBprAptt
 ADMIN = os.getenv("1221558981")
 DB_URL = os.getenv("DB_URL")
 DB_NAME = os.getenv("DB_NAME")
-SUDO_USERS = os.getenv("SUDO_USERS","1221558981"))
+SUDO_USERS = os.getenv("SUDO_USERS","1221558981")
 BOT_USERNAME = getenv("BOT_USERNAME", "YuiVidioPlayer_bot")

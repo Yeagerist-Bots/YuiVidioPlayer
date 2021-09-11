@@ -41,7 +41,7 @@ Deploy Your Own Bot ♥️ **Star 🌟 Fork 🍴 & Deploy**
 
 ### 💜 Railway
 
-[![Deploy+on+Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https://github.com/Achu2234/YuiVidioPlayer&envs=API_ID,API_HASH,BOT_TOKEN,SESSION_NAME,ADMIN,DB_URL,DB_NAME)
+[![Deploy+on+Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https://github.com/Achu2234/YuiVidioPlayer&envs=API_ID,API_HASH,BOT_TOKEN,SESSION_NAME,ADMIN,DB_URL,DB_NAME,SUDO_USERS,BOT_USERNAME)
 
 ### 💜 Heroku
 
@@ -77,7 +77,7 @@ CMD python3 -m main.py
 - **[MarshalX](https://github.com/MarshalX) ~ [pytgcalls](https://github.com/MarshalX/tgcalls)**
 - **[Dan](https://github.com/delivrance) for [Pyrogram](https://github.com/pyrogram/pyrogram)**
 - **𝙄𝙣𝙪𝙠𝙖 𝘼𝙨𝙞𝙩𝙝 For lyrics**
-
+- **[TeamDaisyX](https://github.com/TeamDaisyX) 
 
 # Support 
 
